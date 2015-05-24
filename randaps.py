@@ -406,7 +406,7 @@ def countdown():
 	global settings,countdown_start,value
 	if w.tf_countdown.get()==settings["text_photo"]:
 		take_picture()
-		w.countdown.set(settings["text_wait"])
+		w.tf_countdown.set(settings["text_wait"])
 		w.tk.after(50,manipulate_and_return)
 		return
 	count=int(w.tf_countdown.get())
