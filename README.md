@@ -13,9 +13,9 @@ RandA PhotoSharing is an application which will require the following components
 - Wired or wireless Internet connection (optional)
 
 It’ll also need:
--A GMail account to send emails and save photos to cloud
--An IFTTT account to post photos on various social networks (optional)
--Social networks accounts on which the photos will be posted (optional)
+- A GMail account to send emails and save photos to cloud
+- An IFTTT account to post photos on various social networks (optional)
+- Social networks accounts on which the photos will be posted (optional)
 
 Assembly instructions:
 1. Connect the RaspBerry Camera to RaspBerry
