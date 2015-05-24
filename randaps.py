@@ -130,7 +130,7 @@ class Fullscreen_Window:
 		self.init_first() #start the first mode		
 		return
 
-	def enter_fifth(self):
+	def enter_fifth(self,event):
 		self.ftf_entry.pack_forget()
 		self.init_seventh()
 
@@ -223,13 +223,13 @@ class Fullscreen_Window:
 	def init_seventh(self):
 		global status,settings
 		status=7
-		self.fourth_frame.pack_forget()
 		photo=None
 		if Image.open(path+"data/"+settings["theme"]+"_screen.gif").size==screen_size:
 			photo=tk.PhotoImage(file=path+"data/"+settings["theme"]+"_end.gif")	
 		else:	
 			photo=tk.PhotoImage(file=path+"data/"+settings["theme"]+"_end_tmp.gif")
 		self.ff_photolabel.configure(image=photo)
+		self.fourth_frame.pack_forget()
 		self.ff_photolabel.image=photo
 		self.first_frame.pack()
 
@@ -250,7 +250,7 @@ def take_picture():
 
 	i=datetime.now()
 	now=i.strftime('%Y%m%d-%H%M%S')
-
+	time.sleep(0.4)
 	camera.led= True
 	camera.resolution=resolution
 	camera.capture(path+"photos/"+now+".jpg")
@@ -260,7 +260,7 @@ def take_picture():
 					#it will be synced on load_settings when the list of the pictures will be updated from the folder photos/
 	selected_effect=0
 	camera.image_effect=effects[selected_effect]
-	time.sleep(1)	
+	time.sleep(0.4)	
 
 def manipulate_picture():
 	global pictures,settings,path,value,picture_size
