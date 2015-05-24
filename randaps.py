@@ -284,9 +284,9 @@ def manipulate_picture():
 	value=0 #reset the value
 
 	#rescale in gif format
-	command="/usr/bin/convert "+path+"photos/"+now+".jpg -resize "+str(picture_size[0])+"x"
-	command+=str(picture_size[1])+" "+path+"photos/"+now+".gif"
-	os.system(command)
+	command=" -resize "+str(picture_size[0])+"x"
+	command+=str(picture_size[1])+" "+pictures[-1]+".gif"
+	os.system(begin+command)
 
 def send_mail(to, subject,photo):
 	global settings,mail,mail_password
@@ -388,6 +388,7 @@ def manipulate_and_return():
 	w.third_frame.pack_forget()
 	photo=tk.PhotoImage(file=pictures[-1]+".gif")
 
+	w.tf_countdownlabel.configure(font=("Helvetica",text_size*4))
 	w.tf_countdown.set(countdown_start)
 	w.ftf_photolabel.configure(image=photo)
 	w.ftf_photolabel.image=photo
@@ -407,6 +408,7 @@ def countdown():
 	if w.tf_countdown.get()==settings["text_photo"]:
 		take_picture()
 		w.tf_countdown.set(settings["text_wait"])
+		w.tf_countdownlabel.configure(font=("Helvetica",text_size))
 		w.tk.after(50,manipulate_and_return)
 		return
 	count=int(w.tf_countdown.get())
