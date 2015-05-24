@@ -1,5 +1,5 @@
-# RandA Photo Sharing
-RandA Photo Sharing is an application designed to show all the capabilities of ther RandA board:
+# RandA PhotoSharing
+RandA PhotoSharing is an application designed to show all the capabilities of ther RandA board:
 It lets you use togheter all the high level of abstraction capabilities of RaspBerry and the low level capabilities of Arduino.
 
 #How it works
