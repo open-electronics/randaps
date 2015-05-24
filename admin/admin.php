@@ -136,6 +136,7 @@
 					settings['text_preview'] = $("#text_preview").val();
 					settings['text_measurement'] = $("#text_measurement").val();
 					settings['text_photo'] = $("#text_photo").val();
+					settings['text_wait'] = $("#text_wait").val();
 					settings['text_social'] = $("#text_social").val();
 					settings['text_email'] = $("#text_email").val();
 					settings['text_yes'] = $("#text_yes").val();
@@ -171,6 +172,7 @@
 						$("#text_preview").val(response['text_preview']);
 						$("#text_measurement").val(response['text_measurement']);
 						$("#text_photo").val(response['text_photo']);
+						$("#text_wait").val(response['text_wait']);
 						$("#text_social").val(response['text_social']);
 						$("#text_email").val(response['text_email']);
 						$("#text_yes").val(response['text_yes']);
@@ -516,6 +518,19 @@
 						</div>
 						<div class="col s9">
 							<input placeholder = "text_photo" id="text_photo" type="text">
+						</div>
+
+					</div>
+					
+					<!------------------->
+					
+					<div class="row">
+						
+						<div class="col s3">
+							<b>text_wait</b>
+						</div>
+						<div class="col s9">
+							<input placeholder = "text_wait" id="text_wait" type="text">
 						</div>
 
 					</div>
