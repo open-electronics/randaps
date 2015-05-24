@@ -76,6 +76,7 @@ INSERT INTO `settings` (`Tag`, `Value`) VALUES
 ('text_measurement', 'Misurazione in corso: mani sui poli!'),
 ('text_no', 'No'),
 ('text_photo', 'Cheese!'),
+('text_wait', 'Attendi! Sto elaborando...'),
 ('text_preview', 'Seleziona gli effetti e premi OK per confermare'),
 ('text_social', 'Vuoi caricare la foto sui nostri social networks?'),
 ('text_start', 'Premi OK per iniziare!'),
