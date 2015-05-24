@@ -19,6 +19,7 @@ It’ll also need:
 
 Assembly instructions:
 1. Connect the RaspBerry Camera to RaspBerry
+
 2. Connect RandA to RaspBerry
 3. Connect mouse, keyboard ethernet cable or wireless stick which will be needed for the configuration part
 4. Connect the 3 buttons to RandA as follows:
