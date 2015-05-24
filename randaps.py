@@ -124,10 +124,15 @@ class Fullscreen_Window:
 		#email entry
 		self.email=tk.StringVar()
 		self.ftf_entry=tk.Entry(self.fourth_frame,textvariable=self.email,font=("Helvetica",text_size))
+		self.ftf_entry.bind("<Return>", self.enter_fifth)
 
 		self.first_frame.pack()
 		self.init_first() #start the first mode		
 		return
+
+	def enter_fifth:
+		self.ftf_entry.pack_forget()
+		self.init_seventh()
 
 	def load_settings(self):
 		global settings,path,pictures,picture_size,db_user,db_password
@@ -241,9 +246,7 @@ def change_effect(direction):
 	camera.image_effect=effects[selected_effect]
 
 def take_picture():
-	global pictures,selected_effect,effects,settings,path,picture_size,resolution,value
-
-	
+	global pictures,selected_effect,effects,path,resolution
 
 	i=datetime.now()
 	now=i.strftime('%Y%m%d-%H%M%S')
@@ -253,31 +256,37 @@ def take_picture():
 	camera.capture(path+"photos/"+now+".jpg")
 	camera.led= False	
 
-	begin="/usr/bin/convert "+path+"photos/"+now+".jpg "
-	command=""
-	end=path+"photos/"+now+".jpg"
+	pictures.append(path+"photos/"+now)#append it without format to reduce further string operations to work on multiple formats
+					#it will be synced on load_settings when the list of the pictures will be updated from the folder photos/
+	selected_effect=0
+	camera.image_effect=effects[selected_effect]
+	time.sleep(1)	
 
-	if os.path.isfile(path+"data/logo.png"):
+def manipulate_picture:
+	global pictures,settings,path,value,picture_size
+
+	begin="/usr/bin/convert "+pictures[-1]+".jpg "
+	command=""
+	end=pictures[-1]+".jpg"
+
+	if os.path.isfile(path+"data/logo.png"):#If there's a logo to apply
 		command=path+"data/logo.png -geometry +"+str(settings["logo_x"])+"+"+str(settings["logo_y"])+" -composite "
 		os.system(begin+command+end)
-	if os.path.isfile(path+"data/"+settings["theme"]+"_overlay.png"):
+
+	if os.path.isfile(path+"data/"+settings["theme"]+"_overlay.png"):#If there's an overlay to apply
 		command=path+"data/"+settings["theme"]+"_overlay.png -geometry +"+str(settings["overlay_x"])+"+"+str(settings["overlay_y"])+" -composite "
 		os.system(begin+command+end)
-
+	
+	#Annotate the text
 	command="-pointsize 48 -fill white -annotate +"+str(settings["result_x"])
 	command+="+"+str(settings["result_y"]) +" '"+str(value)+"%' "
 	os.system(begin+command+end)
-	value=0
+	value=0 #reset the value
 
 	#rescale in gif format
 	command="/usr/bin/convert "+path+"photos/"+now+".jpg -resize "+str(picture_size[0])+"x"
 	command+=str(picture_size[1])+" "+path+"photos/"+now+".gif"
 	os.system(command)
-
-	pictures.append(path+"photos/"+now)#append it without format to reduce further string operations to work on multiple formats
-					#it will be synced on load_settings when the list of the pictures will be updated from the folder photos/
-	selected_effect=0
-	camera.image_effect=effects[selected_effect]	
 
 def send_mail(to, subject,photo):
 	global settings,mail,mail_password
@@ -374,25 +383,30 @@ def getMeasure():
 	value=value.strip()
 	return value
 
+def manipulate_and_return:
+	w.third_frame.pack_forget()
+	photo=tk.PhotoImage(file=pictures[-1]+".gif")
+
+	w.tf_countdown.set(countdown_start)
+	w.ftf_photolabel.configure(image=photo)
+	w.ftf_photolabel.image=photo
+	w.fourth_frame.pack()
+	if settings["photo_social"]=="1":
+		w.init_fourth()
+	elif settings["photo_email"]=="1":
+		w.init_fifth()
+	else:
+		w.init_sixth()
+
+	w.tk.after(50,checks)
+	return
+
 def countdown():
 	global settings,countdown_start,value
 	if w.tf_countdown.get()==settings["text_photo"]:
 		take_picture()
-		w.third_frame.pack_forget()
-		photo=tk.PhotoImage(file=pictures[-1]+".gif")
-
-		w.tf_countdown.set(countdown_start)
-		w.ftf_photolabel.configure(image=photo)
-		w.ftf_photolabel.image=photo
-		w.fourth_frame.pack()
-		if settings["photo_social"]=="1":
-			w.init_fourth()
-		elif settings["photo_email"]=="1":
-			w.init_fifth()
-		else:
-			w.init_sixth()
-
-		w.tk.after(50,checks)
+		w.countdown.set(settings["text_wait"]
+		w.tk.after(50,manipulate_and_return)
 		return
 	count=int(w.tf_countdown.get())
 	if count >1:
