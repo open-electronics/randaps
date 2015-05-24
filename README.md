@@ -4,13 +4,13 @@
 ## Hardware
 RandA PhotoSharing is an application which will require the following components:
 - RaspBerry Pi 2
--RaspBerry Camera
--SD Card (8GB or more)
--RandA
--HDMI monitor/TV
--USB mouse and keyboard
--3 buttons and 2 conducting poles
--Wired or wireless Internet connection (optional)
+- RaspBerry Camera
+- SD Card (8GB or more)
+- RandA
+- HDMI monitor/TV
+- USB mouse and keyboard
+- 3 buttons and 2 conducting poles
+- Wired or wireless Internet connection (optional)
 
 It’ll also need:
 -A GMail account to send emails and save photos to cloud
