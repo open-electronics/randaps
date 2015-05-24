@@ -130,7 +130,7 @@ class Fullscreen_Window:
 		self.init_first() #start the first mode		
 		return
 
-	def enter_fifth:
+	def enter_fifth(self):
 		self.ftf_entry.pack_forget()
 		self.init_seventh()
 
@@ -262,7 +262,7 @@ def take_picture():
 	camera.image_effect=effects[selected_effect]
 	time.sleep(1)	
 
-def manipulate_picture:
+def manipulate_picture():
 	global pictures,settings,path,value,picture_size
 
 	begin="/usr/bin/convert "+pictures[-1]+".jpg "
@@ -383,7 +383,8 @@ def getMeasure():
 	value=value.strip()
 	return value
 
-def manipulate_and_return:
+def manipulate_and_return():
+	manipulate_picture()
 	w.third_frame.pack_forget()
 	photo=tk.PhotoImage(file=pictures[-1]+".gif")
 
