@@ -124,7 +124,6 @@ class Fullscreen_Window:
 		#email entry
 		self.email=tk.StringVar()
 		self.ftf_entry=tk.Entry(self.fourth_frame,textvariable=self.email,font=("Helvetica",text_size))
-		self.ftf_entry.bind("<Return>", enter_fifth)
 
 		self.first_frame.pack()
 		self.init_first() #start the first mode		
@@ -234,9 +233,6 @@ serial= serial.Serial('/dev/ttyS0',9600)
 w = Fullscreen_Window()
 
 
-def enter_fifth(event):
-		w.ftf_entry.pack_forget()
-		w.init_seventh()
 def change_effect(direction):
 	global effects,selected_effect
 	if direction:
