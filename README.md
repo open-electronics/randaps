@@ -27,4 +27,4 @@ Assembly instructions:
 6. Button “Prev” → pin 10
 7. Power the buttons by connecting them to the 5V and GND pins on RandA
 Connect the two metal poles to the 5V and A0 pins on RandA
-8. Setup your SD card (we’ll explain it in the next section) and insert it in your RaspBerry, power RandA with a 5V/2A USB cable, this will also power RaspBerry
+8. Setup your SD card (we’ll explain it in the next section) and insert it in your RaspBerry, power RandA with a 5V/2A USB cable, this will also power RaspBerry 
